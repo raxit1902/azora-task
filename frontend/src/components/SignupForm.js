@@ -7,6 +7,7 @@ import {
   signupUserSuccess,
   signupUserFailure,
 } from "../actions/userActions";
+import { API_BASE_URL } from "../constants";
 
 const SignupForm = () => {
   const dispatch = useDispatch();
@@ -65,7 +66,7 @@ const SignupForm = () => {
       dispatch(signupUserRequest());
       const { data, error } = await apiHelper(
         "post",
-        "http://localhost:5000/api/users/signup",
+        `${API_BASE_URL}/users/signup`,
         formData
       );
       if (data) {

@@ -8,6 +8,7 @@ import {
   loginUserSuccess,
   loginUserFailure,
 } from "../actions/authActions";
+import { API_BASE_URL } from "../constants";
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const SignIn = () => {
     dispatch(loginUserRequest());
     const { data, error } = await apiHelper(
       "post",
-      "http://localhost:5000/api/auth/login",
+      `${API_BASE_URL}/auth/login`,
       formData
     );
     if (data) {

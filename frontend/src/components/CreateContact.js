@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import apiHelper from "../utils/apiHelper";
+import { API_BASE_URL } from "../constants";
 
 const CreateContact = () => {
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ const CreateContact = () => {
 
     const { data, error } = await apiHelper(
       "post",
-      "http://localhost:5000/api/contacts",
+      `${API_BASE_URL}/contacts`,
       formData
     );
     setLoading(false);

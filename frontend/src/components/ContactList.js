@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import apiHelper from "../utils/apiHelper";
+import { API_BASE_URL } from "../constants";
 
 const ContactList = () => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const ContactList = () => {
     const fetchContacts = async () => {
       const { data, error } = await apiHelper(
         "get",
-        "http://localhost:5000/api/contacts"
+        `${API_BASE_URL}/contacts`
       );
       if (data) {
         setContacts(data);
@@ -54,7 +55,7 @@ const ContactList = () => {
 
     const { data, error } = await apiHelper(
       "put",
-      `http://localhost:5000/api/contacts/${id}`,
+      `${API_BASE_URL}/contacts/${id}`,
       editFormData
     );
 
@@ -75,7 +76,7 @@ const ContactList = () => {
     if (window.confirm("Are you sure you want to delete this contact?")) {
       const { data, error } = await apiHelper(
         "delete",
-        `http://localhost:5000/api/contacts/${id}`
+        `${API_BASE_URL}/contacts/${id}`
       );
       if (data) {
         setContacts(contacts.filter((contact) => contact._id !== id));
